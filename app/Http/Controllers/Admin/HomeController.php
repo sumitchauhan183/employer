@@ -4,19 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
 
 class HomeController extends Controller
 {
 
-    public function __construct()
+    public function __construct(Request $request)
     {
-        if(!Auth::guard('admin')->check()){
-            return redirect()
-            ->route('admin.login');
-        }
-
         
+       
+        if(session()->get('user')):
+            if(session()->get('user')['type']!='admin'):
+                return redirect()->route('notauthorised');
+            endif;
+        else:    
+            return redirect()->route('admin.login');
+        endif;
     }
 
     
@@ -27,7 +29,13 @@ class HomeController extends Controller
      */
     
 
-    public function index(){
+    public function dashboard(){
         return view('admin.home');
+    }
+
+    public function logout()
+    {
+        session()->flush();
+        return redirect()->route('admin.login');
     }
 }

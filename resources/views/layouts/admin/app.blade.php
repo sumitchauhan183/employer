@@ -21,33 +21,30 @@
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
     <!-- CSS Files -->
-    <link id="pagestyle" href="{{ asset('resources/css/material-dashboard.css?v=3.0.0') }}" rel="stylesheet" />
+    <link id="pagestyle" href="{{ asset('resources/css/material-dashboard.css') }}" rel="stylesheet" />
 
 </head>
-<body class="bg-gray-200">
 
-    @include('inc.admin.navbar')
+@if(session('user'))
+    <body class="g-sidenav-show  bg-gray-200">
+    @include('inc.admin.aside')
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    @include('inc.admin.navbar')  
+    <div class="container-fluid py-4">
+    @yield('content')
+        @include('inc.admin.footer')
+    </div>
+  </main>
+@else
+    <body class="bg-gray-200"> 
     <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100" style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
-        @yield('content')
-        <footer class="footer position-absolute bottom-2 py-2 w-100">
-        <div class="container">
-          <div class="row align-items-center justify-content-lg-between">
-            <div class="col-12 col-md-12 my-auto">
-              <div class="copyright text-center text-sm text-white text-lg-center">
-                © <script>
-                  document.write(new Date().getFullYear())
-                </script>,
-                made with <i class="fa fa-heart" aria-hidden="true"></i> by
-                <a href="" class="font-weight-bold text-white" target="_blank">Appscioto Tech Pvt. Ltd.</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      </div>
+    @yield('content')
+        @include('inc.admin.footer')
+    </div>
   </main>
-  </div>
+@endif
+      
 
         
      <!--   Core JS Files   -->

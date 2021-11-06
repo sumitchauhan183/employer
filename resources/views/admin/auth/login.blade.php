@@ -13,6 +13,11 @@
                 </div>
               </div>
               <div class="card-body">
+              @if(session('error'))
+                                   <span class="invalid-feedback" style="display:block;" role="alert">
+                                        <strong>{{ session('error') }}</strong>
+                                    </span>
+                                @endif
                 <form role="form" class="text-start" method="POST" action="{{ route('admin.login') }}">
                 @csrf
                   <div class="input-group input-group-outline my-3">
@@ -34,6 +39,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                
                   </div>
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                   <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

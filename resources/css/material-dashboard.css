@@ -17531,4 +17531,13 @@ pre[class*="language-"] {
   .ps {
     overflow: auto !important; } }
 
+
+    .navbar-vertical.navbar-expand-xs{
+      max-width: 290px !important;
+    }    
+
+    .navbar-vertical.navbar-expand-xs .navbar-collapse{
+      height: auto !important;
+    }
+
 /*# sourceMappingURL=material-dashboard.css.map */

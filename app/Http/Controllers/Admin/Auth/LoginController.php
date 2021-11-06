@@ -2,13 +2,40 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use Auth;
-use Illuminate\Http\Request;
+
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use App\Models\Admin;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Auth;
 
 class LoginController extends Controller
 {
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    //use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+
+    public function __construct()
+    {
+         if(Session('user')):
+            return redirect('admin/dashboard');
+         endif;
+    }
 
     /**
      * Show the login form.
@@ -17,10 +44,12 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
+        
         return view('admin.auth.login',[
             'title' => 'Admin Login',
             'loginRoute' => 'admin.login',
             'forgotPasswordRoute' => 'admin.password.request',
+            
         ]);
     }
 
@@ -32,30 +61,26 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validator($request);
-    
-            if(Auth::guard('admin')->attempt($request->only('email','password'),$request->filled('remember'))){
-                //Authentication passed...
-                return redirect()
-                    ->intended(route('admin.home'))
-                    ->with('status','You are Logged in as Admin!');
-            }
+        $input = $request->input();
+        if($this->validator($request)):
+            $admin = Admin::where([
+                'email'=> $input['email']
+            ])->get()->first();
 
-            //Authentication failed...
-            return $this->loginFailed();
-    }
+            if (Hash::check($input['password'], $admin->password)):
+                session()->put('user',[
+                    "type"=>'admin',
+                    "data"=>$admin
+                ]);
+                return redirect()->route('admin.dashboard');
+            else:
+                session()->put('error','Login failed, please try again!');
+                return redirect()->route('admin.login');
+            endif;
+            
+        endif;
 
-    /**
-     * Logout the admin.
-     * 
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function logout()
-    {
-        Auth::guard('admin')->logout();
-        return redirect()
-            ->route('admin.login')
-            ->with('status','Admin has been logged out!');
+        dd($this->validator($request));
     }
 
     /**
@@ -78,8 +103,10 @@ class LoginController extends Controller
             ];
 
             //validate the request.
-            $request->validate($rules,$messages);
+            return $request->validate($rules,$messages);
     }
+
+    
 
     /**
      * Redirect back after a failed login.

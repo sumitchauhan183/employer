@@ -27,4 +27,13 @@ class HomeController extends Controller
             'title' => 'Dashboard'
         ]);
     }
+
+    public function noaccess()
+    {
+        return view('noaccess',[
+            'title' => 'Not Authorised'
+        ]);
+    }
+
+    
 }
