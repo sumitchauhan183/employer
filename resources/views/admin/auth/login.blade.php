@@ -47,8 +47,8 @@
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
-                    @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                    @if (Route::has('admin.password.request'))
+                                    <a class="btn btn-link" href="{{ route('admin.password.request') }}">
                                         forgot password
                                     </a>
                     @endif

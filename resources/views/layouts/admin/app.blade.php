@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('resources/css/img/apple-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{ asset('resources/css/img/favicon.png')}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -23,6 +23,7 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('resources/css/material-dashboard.css') }}" rel="stylesheet" />
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
 
 @if(session('user'))
@@ -64,6 +65,5 @@
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ asset('js/material-dashboard.min.js?v=3.0.0') }}"></script> 
 </body>
 </html>

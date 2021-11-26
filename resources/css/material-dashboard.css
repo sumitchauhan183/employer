@@ -17540,4 +17540,35 @@ pre[class*="language-"] {
       height: auto !important;
     }
 
+    .rf-btn{
+      float: right;
+      right: 28px;
+      top: -5px;
+      margin: 5px;
+    }
+    .h-p-65{
+      height:65px !important;
+    }
+    .dib-inpt{
+      display: inline-block;
+      float: left;
+    }
+
+    lable{
+      float: left;
+      color: black;
+      padding: 5px;
+    }
+    .input-group > .form-control, .input-group > .form-select{
+      width:95%;
+    }
+    .m-b-0{
+      margin-bottom: 0px !important;
+    }
+
+    .invalid-feedback{
+      text-align: left !important;
+      font-size: 10px !important;
+    }
+
 /*# sourceMappingURL=material-dashboard.css.map */

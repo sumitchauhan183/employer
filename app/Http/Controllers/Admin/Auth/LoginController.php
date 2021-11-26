@@ -79,8 +79,6 @@ class LoginController extends Controller
             endif;
             
         endif;
-
-        dd($this->validator($request));
     }
 
     /**

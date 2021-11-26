@@ -35,5 +35,12 @@ class HomeController extends Controller
         ]);
     }
 
+    public function pageNotFound()
+    {
+        return view('pagenotfound',[
+            'title' => 'Not Authorised'
+        ]);
+    }
+
     
 }
