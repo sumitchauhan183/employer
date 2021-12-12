@@ -17571,4 +17571,8 @@ pre[class*="language-"] {
       font-size: 10px !important;
     }
 
+    .table > :not(caption) > * > * {
+      padding: 0.5rem 1.57rem;
+    }
+
 /*# sourceMappingURL=material-dashboard.css.map */

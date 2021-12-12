@@ -53,6 +53,12 @@
   <script src="{{ asset('resources/js/core/bootstrap.min.js') }}"></script>
   <script src="{{ asset('resources/js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('resources/js/plugins/smooth-scrollbar.min.js') }}"></script>
+  <script src="{{ asset('resources/js/custom/assign-data.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            assign.init();
+        });
+    </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

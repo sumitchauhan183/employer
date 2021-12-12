@@ -49,6 +49,7 @@ Route::post('admin/hrs/add',[App\Http\Controllers\Admin\HomeController::class,'a
 Route::get('admin/data',[App\Http\Controllers\Admin\HomeController::class,'data'])->name('admin.data');
 Route::get('admin/data/add',[App\Http\Controllers\Admin\HomeController::class,'dataAdd'])->name('admin.data.add');
 Route::post('admin/data/add',[App\Http\Controllers\Admin\HomeController::class,'addDataReg']);
+Route::get('admin/data/assign',[App\Http\Controllers\Admin\HomeController::class,'dataAssign'])->name('admin.data.assign');
 
 Route::get('admin/profile',[App\Http\Controllers\Admin\HomeController::class,'profile'])->name('admin.profile');
 

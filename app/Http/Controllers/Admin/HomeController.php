@@ -180,6 +180,19 @@ class HomeController extends Controller
         endif;
     }
 
+    public function dataAssign(){
+       
+        return view('admin.data_assign',
+        [
+            'page'=>'data/assign',
+            'data'=>Customer::where('status','active')->get()->toArray(),
+            'trainer'=>Trainer::where('status','active')->get()->toArray(),
+            'employee'=>Employee::where('status','active')->get()->toArray()
+        ]
+      );
+      
+    }
+
     public function addDataRegxl(Request $request){
        $valid = $this->datavalidatorxl($request);
                if(!$valid['error']):
